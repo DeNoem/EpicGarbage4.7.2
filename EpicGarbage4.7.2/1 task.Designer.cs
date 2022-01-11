@@ -61,7 +61,7 @@ namespace EpicGarbage4._7._2
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(180, 12);
+            this.label2.Location = new System.Drawing.Point(169, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 17);
             this.label2.TabIndex = 11;
@@ -83,7 +83,7 @@ namespace EpicGarbage4._7._2
             "10",
             "11",
             "12"});
-            this.comboBox2.Location = new System.Drawing.Point(180, 37);
+            this.comboBox2.Location = new System.Drawing.Point(169, 37);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(151, 24);

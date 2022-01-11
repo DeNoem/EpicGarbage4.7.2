@@ -18,21 +18,8 @@ namespace EpicGarbage4._7._2
             InitializeComponent();
 
             var mainList = FileCore.Read();
-            List<Garbage> result = new List<Garbage>();
 
-            for (int i = 0; i < 12; i++)
-            {
-                Garbage temp = new Garbage();
-                var tempList = mainList.Where(Garbage => Garbage.Month == i);
-
-                foreach (var item in tempList)
-                {
-                    temp.AmountIndustrial += item.AmountIndustrial;
-                    temp.AmountConstruction += item.AmountConstruction;
-                    temp.AmountMunicipal += item.AmountMunicipal;
-                }
-                result.Add(temp);
-            }
+            List<Garbage> result = FileCore.MonthAddition(mainList);
 
             var j = 1;
             foreach (var item in result)

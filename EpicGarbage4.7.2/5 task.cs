@@ -34,9 +34,6 @@ namespace EpicGarbage4._7._2
             chart1.Series["Series1"].Points.AddXY("Industrial", result.AmountIndustrial);
             chart1.Series["Series1"].Points.AddXY("Construction", result.AmountConstruction);
             chart1.Series["Series1"].Points.AddXY("Municipal", result.AmountMunicipal);
-
-
-
         }
 
     }

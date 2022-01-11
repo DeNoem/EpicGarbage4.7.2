@@ -20,21 +20,9 @@ namespace EpicGarbage4._7._2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<Garbage> temp = FileCore.Search(comboBox1.SelectedIndex, comboBox2.SelectedIndex);
-            switch (comboBox3.SelectedIndex)
-            {
-                case 0:
-                    
-                    break;
-
-                case 1:
-                    
-                    break;
-
-                case 2:
-                    
-                    break;
-            }
+            //List<Garbage> temp = FileCore.Search(comboBox1.SelectedIndex, comboBox2.SelectedIndex);
+            var temp = FileCore.Addition(comboBox3.SelectedIndex, FileCore.Search(comboBox1.SelectedIndex, comboBox2.SelectedIndex));
+ 
             temp.Sort();
 
             listBox1.DataSource = temp;

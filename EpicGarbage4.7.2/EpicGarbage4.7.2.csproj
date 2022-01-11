@@ -115,6 +115,9 @@
     <EmbeddedResource Include="6 task.resx">
       <DependentUpon>6 task.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditData.resx">
+      <DependentUpon>EditData.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main menu.resx">
       <DependentUpon>Main menu.cs</DependentUpon>
     </EmbeddedResource>

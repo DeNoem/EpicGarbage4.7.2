@@ -21,16 +21,17 @@ namespace ClassLibrary
         {
             string jsonString = File.ReadAllText(@"C:\temp\MyTest.json");
             return JsonSerializer.Deserialize<List<Garbage>>(jsonString);
-        }       
+        }
 
         public static string Serializer<T>(List<T> list)        //Сериализация
         {
             return JsonSerializer.Serialize(list);
-        }       
+        }
+
 
         public static Garbage Search(string type, int month)    //Отбор из коллекции по типу и месяцу
         {
-            foreach (var item in Read())                
+            foreach (var item in Read())
             {
                 if (item.Month == month && item.DistrictType == type)
                     return item;
@@ -40,14 +41,13 @@ namespace ClassLibrary
 
         public static List<Garbage> Search(int month)           //Отбор из коллекции по месяцу
         {
-            List < Garbage > temp = Read().Where(Garbage => Garbage.Month == month).ToList();
+            List<Garbage> temp = Read().Where(Garbage => Garbage.Month == month).ToList();
             return temp;
         }
 
         public static List<Garbage> Search(int monthS, int monthF)  //Отбор из коллекции по периоду
         {
-            List<Garbage> temp = Read().Where(Garbage => Garbage.Month >= monthS && Garbage.Month
-                    <= monthF).ToList();
+            List<Garbage> temp = Read().Where(Garbage => Garbage.Month >= monthS && Garbage.Month <= monthF).ToList();
             return temp;
         }
 
@@ -56,34 +56,101 @@ namespace ClassLibrary
             File.Delete(@"C:\temp\MyTest.txt");
         }
 
-        /*СДЕЛАТЬ*/
-        public static void EditFile()   //Редактирование файла
-        {
-            
-        }   
-
-        public static List<Garbage> RandomList()    //попытка в рандомизированную коллекцию
+        public static List<Garbage> RandomList()    //Рандомная коллекция на год
         {
             Random rand = new Random();
             List<Garbage> ranList = new List<Garbage>();
 
             for (int i = 0; i < 12; i++)
             {
-                /* Раскоментить блок ниже и блок контрутора в Garbage*/
+                Garbage First = new Garbage(i, "Industrial", rand.Next(100, 150), rand.Next(10, 50), rand.Next(10, 50));
+                Garbage Second = new Garbage(i, "Central", rand.Next(0, 10), rand.Next(50, 100), rand.Next(100, 150));
+                Garbage Third = new Garbage(i, "New", rand.Next(50, 100), rand.Next(50, 150), rand.Next(50, 100));
 
-                //Garbage First = new Garbage(i, "Industrial", rand.Next(100, 150), rand.Next(10, 50), rand.Next(10, 50));
-                //Garbage Second = new Garbage(i, "Central", rand.Next(10, 50), rand.Next(50, 100), rand.Next(100, 150));
-                //Garbage Third = new Garbage(i, "New", rand.Next(50, 100), rand.Next(50, 150), rand.Next(50, 100));
-
-                //ranList.Add(First);
-                //ranList.Add(Second);
-                //ranList.Add(Third);
+                ranList.Add(First);
+                ranList.Add(Second);
+                ranList.Add(Third);
             }
 
 
             return ranList;
-        }   
+        }
 
-        
+        public static List<int> Addition(int garbageType, List<Garbage> glist)
+        {
+            List<int> result = new List<int>();
+            int temp = 0;
+            int i = 0;
+            switch (garbageType)
+            {
+                
+                case 0:
+
+                    foreach (var item in glist)
+                    {
+                        temp += item.AmountIndustrial;
+                        i++;
+                        if (i % 3 == 0)
+                        {
+                            result.Add(temp);
+                            i = 0;
+                            temp = 0;
+                        }
+                    }
+                    return result;
+
+                case 1:
+                    foreach (var item in glist)
+                    {
+                        temp += item.AmountConstruction;
+                        i++;
+                        if (i % 3 == 0)
+                        {
+                            result.Add(temp);
+                            i = 0;
+                            temp = 0;
+                        }
+                    }
+                    return result;
+
+                case 2:
+                    foreach (var item in glist)
+                    {
+                        temp += item.AmountMunicipal;
+                        i++;
+                        if (i % 3 == 0)
+                        {
+                            result.Add(temp);
+                            i = 0;
+                            temp = 0;
+                        }
+                    }
+                    return result;
+            }
+            return null;
+
+        }
+
+        public static List<Garbage> MonthAddition(List<Garbage> mainList)
+        {
+            List<Garbage> result = new List<Garbage>();
+            for (int i = 0; i < 12; i++)
+            {
+                Garbage temp = new Garbage();
+                var tempList = mainList.Where(Garbage => Garbage.Month == i);
+
+                foreach (var item in tempList)
+                {
+                    temp.AmountIndustrial += item.AmountIndustrial;
+                    temp.AmountConstruction += item.AmountConstruction;
+                    temp.AmountMunicipal += item.AmountMunicipal;
+                }
+                result.Add(temp);
+            }
+            return result;
+        }
+
+
+
     }
 }

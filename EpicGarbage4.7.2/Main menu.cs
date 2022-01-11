@@ -15,21 +15,10 @@ namespace EpicGarbage4._7._2
     {
         public Form1()
         {
+            //FileCore.AvailableYears();
             InitializeComponent();
         }
 
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            FileCore.DeleteFile();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-            FileCore.Add(FileCore.Serializer<Garbage>(FileCore.RandomList()));
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {
