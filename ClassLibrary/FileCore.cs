@@ -131,22 +131,44 @@ namespace ClassLibrary
 
         }
 
+        public static List<int> Addition(Func<Garbage, int> garbageType, List<Garbage> glist)
+        {
+            var result = glist.GroupBy(g=> g.Month)
+                .OrderBy(g=> g.Key)
+                .Select(g=> g.Sum(garbageType))
+                .ToList();
+            
+            return result;
+        }
+
+
         public static List<Garbage> MonthAddition(List<Garbage> mainList)
         {
-            List<Garbage> result = new List<Garbage>();
-            for (int i = 0; i < 12; i++)
-            {
-                Garbage temp = new Garbage();
-                var tempList = mainList.Where(Garbage => Garbage.Month == i);
+            //List<Garbage> result = new List<Garbage>();
 
-                foreach (var item in tempList)
+            //for (int i = 0; i < 12; i++)
+            //{
+            //    Garbage temp = new Garbage();
+            //    var tempList = mainList.Where(Garbage => Garbage.Month == i);
+
+            //    foreach (var item in tempList)
+            //    {
+            //        temp.AmountIndustrial += item.AmountIndustrial;
+            //        temp.AmountConstruction += item.AmountConstruction;
+            //        temp.AmountMunicipal += item.AmountMunicipal;
+            //    }
+            //    result.Add(temp);
+            //}
+
+            var result = mainList.GroupBy(g => g.Month)
+                .Select(g => new Garbage
                 {
-                    temp.AmountIndustrial += item.AmountIndustrial;
-                    temp.AmountConstruction += item.AmountConstruction;
-                    temp.AmountMunicipal += item.AmountMunicipal;
-                }
-                result.Add(temp);
-            }
+                    Month = g.Key,
+                    AmountIndustrial = g.Sum(garbage => garbage.AmountIndustrial),
+                    AmountConstruction = g.Sum(garbage => garbage.AmountConstruction),
+                    AmountMunicipal = g.Sum(garbage => garbage.AmountMunicipal)
+                }).ToList();
+
             return result;
         }
 
