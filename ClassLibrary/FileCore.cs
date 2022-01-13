@@ -11,52 +11,47 @@ namespace ClassLibrary
 {
     public static class FileCore
     {
-        public static void Add(string contents)     //добавление единичной строки.
+        public static void Add(string contents)    
         {
 
             File.WriteAllText(@"C:\temp\MyTest.json", contents);
         }
 
-        public static List<Garbage> Read()          //Чтение файла в коллекцию
+        public static List<Garbage> Read()        
         {
             string jsonString = File.ReadAllText(@"C:\temp\MyTest.json");
             return JsonSerializer.Deserialize<List<Garbage>>(jsonString);
         }
 
-        public static string Serializer<T>(List<T> list)        //Сериализация
+        public static string Serializer<T>(List<T> list)        
         {
             return JsonSerializer.Serialize(list);
         }
 
-
-        public static Garbage Search(string type, int month)    //Отбор из коллекции по типу и месяцу
+        public static Garbage Search(string type, int month)
         {
-            foreach (var item in Read())
-            {
-                if (item.Month == month && item.DistrictType == type)
-                    return item;
-            }
-            return null;
+            List<Garbage> temp = Read().Where(Garbage => Garbage.Month == month && Garbage.DistrictType == type).ToList();
+            return temp[0];
         }
 
-        public static List<Garbage> Search(int month)           //Отбор из коллекции по месяцу
+        public static List<Garbage> Search(int month)
         {
             List<Garbage> temp = Read().Where(Garbage => Garbage.Month == month).ToList();
             return temp;
         }
 
-        public static List<Garbage> Search(int monthS, int monthF)  //Отбор из коллекции по периоду
+        public static List<Garbage> Search(int monthS, int monthF)
         {
             List<Garbage> temp = Read().Where(Garbage => Garbage.Month >= monthS && Garbage.Month <= monthF).ToList();
             return temp;
         }
 
-        public static void DeleteFile() //удаление файла
+        public static void DeleteFile()
         {
             File.Delete(@"C:\temp\MyTest.txt");
         }
 
-        public static List<Garbage> RandomList()    //Рандомная коллекция на год
+        public static List<Garbage> RandomList()
         {
             Random rand = new Random();
             List<Garbage> ranList = new List<Garbage>();
@@ -71,95 +66,44 @@ namespace ClassLibrary
                 ranList.Add(Second);
                 ranList.Add(Third);
             }
-
-
             return ranList;
         }
 
-        public static List<int> Addition(int garbageType, List<Garbage> glist)
-        {
-            List<int> result = new List<int>();
-            int temp = 0;
-            int i = 0;
-            switch (garbageType)
-            {
-                
-                case 0:
-
-                    foreach (var item in glist)
-                    {
-                        temp += item.AmountIndustrial;
-                        i++;
-                        if (i % 3 == 0)
-                        {
-                            result.Add(temp);
-                            i = 0;
-                            temp = 0;
-                        }
-                    }
-                    return result;
-
-                case 1:
-                    foreach (var item in glist)
-                    {
-                        temp += item.AmountConstruction;
-                        i++;
-                        if (i % 3 == 0)
-                        {
-                            result.Add(temp);
-                            i = 0;
-                            temp = 0;
-                        }
-                    }
-                    return result;
-
-                case 2:
-                    foreach (var item in glist)
-                    {
-                        temp += item.AmountMunicipal;
-                        i++;
-                        if (i % 3 == 0)
-                        {
-                            result.Add(temp);
-                            i = 0;
-                            temp = 0;
-                        }
-                    }
-                    return result;
-            }
-            return null;
-
-        }
 
         public static List<int> Addition(Func<Garbage, int> garbageType, List<Garbage> glist)
         {
             var result = glist.GroupBy(g=> g.Month)
                 .OrderBy(g=> g.Key)
-                .Select(g=> g.Sum(garbageType))
+                .Select(g=> g.Sum(garbageType)) //(garbage => garbage.AmountIndustrial)
                 .ToList();
             
+            return result;
+        }
+
+        public static List<int> TypeSelect(int garbageType, List<Garbage> glist)
+        {
+            List<int> result = null;
+            switch (garbageType)
+            {
+                case 0:
+                    result = Addition((garbage => garbage.AmountIndustrial), glist);
+                    break;
+
+                case 1:
+                    result = Addition((garbage => garbage.AmountConstruction), glist);
+                    break;
+
+                case 2:
+                    result = Addition((garbage => garbage.AmountMunicipal), glist);
+                    break;
+            }
+
             return result;
         }
 
 
         public static List<Garbage> MonthAddition(List<Garbage> mainList)
         {
-            //List<Garbage> result = new List<Garbage>();
-
-            //for (int i = 0; i < 12; i++)
-            //{
-            //    Garbage temp = new Garbage();
-            //    var tempList = mainList.Where(Garbage => Garbage.Month == i);
-
-            //    foreach (var item in tempList)
-            //    {
-            //        temp.AmountIndustrial += item.AmountIndustrial;
-            //        temp.AmountConstruction += item.AmountConstruction;
-            //        temp.AmountMunicipal += item.AmountMunicipal;
-            //    }
-            //    result.Add(temp);
-            //}
-
             var result = mainList.GroupBy(g => g.Month)
                 .Select(g => new Garbage
                 {

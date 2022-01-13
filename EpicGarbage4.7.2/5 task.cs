@@ -24,12 +24,7 @@ namespace EpicGarbage4._7._2
             var tempList = FileCore.Search(comboBox2.SelectedIndex); 
             Garbage result = new Garbage();
 
-            foreach (var item in tempList)
-            {
-                result.AmountIndustrial += item.AmountIndustrial;
-                result.AmountConstruction += item.AmountConstruction;
-                result.AmountMunicipal += item.AmountMunicipal;
-            }
+            result = FileCore.MonthAddition(tempList)[0];
 
             chart1.Series["Series1"].Points.AddXY("Industrial", result.AmountIndustrial);
             chart1.Series["Series1"].Points.AddXY("Construction", result.AmountConstruction);

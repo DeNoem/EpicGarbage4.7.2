@@ -42,9 +42,6 @@ namespace EpicGarbage4._7._2
             this.label4 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button3
@@ -177,33 +174,6 @@ namespace EpicGarbage4._7._2
             this.label10.TabIndex = 5;
             this.label10.Text = "Столбцовая диаграмма";
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(472, 429);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(170, 17);
-            this.label11.TabIndex = 5;
-            this.label11.Text = "Выполнил обучающийся";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(511, 446);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(131, 17);
-            this.label13.TabIndex = 5;
-            this.label13.Text = "группы ИСТб20о-1";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(508, 463);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(134, 17);
-            this.label14.TabIndex = 5;
-            this.label14.Text = "Кочегура Тимофей";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -215,9 +185,6 @@ namespace EpicGarbage4._7._2
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button8);
@@ -248,9 +215,6 @@ namespace EpicGarbage4._7._2
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
     }
 }
 
