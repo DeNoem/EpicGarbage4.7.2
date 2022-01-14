@@ -108,8 +108,8 @@ namespace EpicGarbage4._7._2
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Items.AddRange(new object[] {
             "коммунальный",
-            "индустриальный",
-            "строительный"});
+            "строительный",
+            "индустриальный"});
             this.comboBox3.Location = new System.Drawing.Point(249, 24);
             this.comboBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBox3.Name = "comboBox3";
