@@ -26,12 +26,11 @@ namespace EpicGarbage4._7._2
 
             List<Garbage> temp = FileCore.Search(comboBox2.SelectedIndex);
 
-            var j = 1;
             foreach (var item in temp)
             {
-                this.chart1.Series["Industrial garbage"].Points.AddXY(j, item.AmountIndustrial);
-                this.chart1.Series["Construction garbage"].Points.AddXY(j, item.AmountConstruction);
-                this.chart1.Series["Municipal garbage"].Points.AddXY(j++, item.AmountMunicipal);
+                this.chart1.Series["Industrial garbage"].Points.AddXY(item.Month, item.AmountIndustrial);
+                this.chart1.Series["Construction garbage"].Points.AddXY(item.Month, item.AmountConstruction);
+                this.chart1.Series["Municipal garbage"].Points.AddXY(item.Month, item.AmountMunicipal);
             }
         }
     }
