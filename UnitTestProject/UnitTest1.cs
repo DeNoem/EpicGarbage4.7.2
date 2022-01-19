@@ -1,9 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using ClassLibrary;
-using System.Linq;
-using System.IO;
+﻿using ClassLibrary;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text.Json;
 
 namespace UnitTestProject
@@ -27,13 +26,12 @@ namespace UnitTestProject
         {
             string type = "Industrial";
             int month = 0;
-            File.WriteAllText(@"C:\temp\MyTest.json", JsonSerializer.Serialize(Garbages));
-            List<Garbage> temp = JsonSerializer.Deserialize<List<Garbage>>(File.ReadAllText(@"C:\temp\MyTest.json"));
-                
-            List<Garbage> result = temp.Where(Garbage => Garbage.Month == month && Garbage.DistrictType == type).ToList();
+            File.WriteAllText(@"MyTest.json", JsonSerializer.Serialize(Garbages));
+            List<Garbage> temp = JsonSerializer.Deserialize<List<Garbage>>(File.ReadAllText(@"MyTest.json"));
 
-            var actual = temp[0].AmountConstruction;
+            var actual = temp.Where(Garbage => Garbage.Month == month && Garbage.DistrictType == type).ToList()[0].AmountConstruction;
             var expected = 1;
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -41,13 +39,15 @@ namespace UnitTestProject
         public void TestSearchMonth()           //Отбор из коллекции по месяцу
         {
             int month = 0;
+            File.WriteAllText(@"MyTest.json", JsonSerializer.Serialize(Garbages));
+            List<Garbage> temp = JsonSerializer.Deserialize<List<Garbage>>(File.ReadAllText(@"MyTest.json"));
 
-            List<Garbage> temp = JsonSerializer.Deserialize<List<Garbage>>(File.ReadAllText(@"C:\temp\MyTest.json"));
-            var result = temp.Where(Garbage => Garbage.Month == month).ToList();
+            var actual = temp.Where(Garbage => Garbage.Month == month)
+                .Select(Garbage => Garbage.AmountIndustrial)
+                .ToList();
+            List<int> expected = new List<int> { 1, 2, 3 };
 
-            var actual = temp[0].AmountIndustrial;
-            var expected = 1;
-            Assert.AreEqual(expected, actual);
+            CollectionAssert.AreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -56,33 +56,36 @@ namespace UnitTestProject
 
             int monthS = 0;
             int monthF = 1;
-            List<Garbage> temp = JsonSerializer.Deserialize<List<Garbage>>(File.ReadAllText(@"C:\temp\MyTest.json"));
-            var result = temp.Where(Garbage => Garbage.Month >= monthS && Garbage.Month <= monthF).ToList();
-            
-            var actual = result[1].AmountIndustrial;
-            var expected = 2;
-            Assert.AreEqual(expected, actual);
+            File.WriteAllText(@"MyTest.json", JsonSerializer.Serialize(Garbages));
+            List<Garbage> temp = JsonSerializer.Deserialize<List<Garbage>>(File.ReadAllText(@"MyTest.json"));
+
+            var actual = temp.Where(Garbage => Garbage.Month >= monthS && Garbage.Month <= monthF)
+                .Select(Garbage => Garbage.AmountIndustrial)
+                .ToList();
+            var expected = new List<int> { 1, 2, 3, 4, 5, 6 }; 
+
+            CollectionAssert.AreEqual(expected, actual);
         }
 
         [TestMethod]
         public void TestMonthAddition()
         {
-            List<Garbage> mainList = JsonSerializer.Deserialize<List<Garbage>>(File.ReadAllText(@"C:\temp\MyTest.json")); ;
-            var result = mainList.GroupBy(g => g.Month)
+            File.WriteAllText(@"MyTest.json", JsonSerializer.Serialize(Garbages));
+            List<Garbage> mainList = JsonSerializer.Deserialize<List<Garbage>>(File.ReadAllText(@"MyTest.json"));
+
+            var actual = mainList.GroupBy(g => g.Month)
                 .Select(g => new Garbage
                 {
                     Month = g.Key,
                     AmountIndustrial = g.Sum(garbage => garbage.AmountIndustrial),
                     AmountConstruction = g.Sum(garbage => garbage.AmountConstruction),
                     AmountMunicipal = g.Sum(garbage => garbage.AmountMunicipal)
-                }).ToList();
+                })
+                .Select(Garbage => Garbage.AmountIndustrial)
+                .ToList();
+            var expected = new List<int> { 6, 15, 7 };
 
-            //var actual = result.Select(Garbage => Garbage.AmountIndustrial).ToList();
-
-
-            var actual = result[2].AmountIndustrial;
-            var expected = 7;
-            Assert.AreEqual(expected, actual);
+            CollectionAssert.AreEqual(expected, actual);
         }
     }
 }

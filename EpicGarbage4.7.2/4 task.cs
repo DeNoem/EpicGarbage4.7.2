@@ -21,12 +21,11 @@ namespace EpicGarbage4._7._2
 
             List<Garbage> result = FileCore.MonthAddition(mainList);
 
-            var j = 1;
             foreach (var item in result)
             {
-                this.chart1.Series["Industrial"].Points.AddXY(j, item.AmountIndustrial);
-                this.chart1.Series["Construction"].Points.AddXY(j, item.AmountConstruction);
-                this.chart1.Series["Municipal"].Points.AddXY(j++, item.AmountMunicipal);
+                this.chart1.Series["Industrial"].Points.AddXY(item.Month+1, item.AmountIndustrial);
+                this.chart1.Series["Construction"].Points.AddXY(item.Month+1, item.AmountConstruction);
+                this.chart1.Series["Municipal"].Points.AddXY(item.Month+1, item.AmountMunicipal);
             }
         }
     }

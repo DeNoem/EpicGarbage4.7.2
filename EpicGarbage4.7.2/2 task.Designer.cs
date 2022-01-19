@@ -100,7 +100,7 @@ namespace EpicGarbage4._7._2
             this.Controls.Add(this.comboBox2);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "_2_task";
-            this.Text = "_2_task";
+            this.Text = "Запрос 2";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

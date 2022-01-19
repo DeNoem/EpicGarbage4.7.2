@@ -170,9 +170,9 @@ namespace EpicGarbage4._7._2
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(13, 312);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(162, 17);
+            this.label10.Size = new System.Drawing.Size(169, 17);
             this.label10.TabIndex = 5;
-            this.label10.Text = "Столбцовая диаграмма";
+            this.label10.Text = "Столбиковая диаграмма";
             // 
             // Form1
             // 
@@ -194,7 +194,7 @@ namespace EpicGarbage4._7._2
             this.Controls.Add(this.button3);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Главное меню";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

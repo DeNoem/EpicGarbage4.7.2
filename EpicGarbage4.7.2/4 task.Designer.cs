@@ -74,7 +74,7 @@ namespace EpicGarbage4._7._2
             this.ClientSize = new System.Drawing.Size(796, 448);
             this.Controls.Add(this.chart1);
             this.Name = "_4_task";
-            this.Text = "_4_task";
+            this.Text = "Запрос 4";
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 

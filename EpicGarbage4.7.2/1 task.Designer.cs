@@ -112,7 +112,7 @@ namespace EpicGarbage4._7._2
             this.Controls.Add(this.comboBox1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "_1_task";
-            this.Text = "_1_task";
+            this.Text = "Запрос 1";
             this.Load += new System.EventHandler(this._1_task_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

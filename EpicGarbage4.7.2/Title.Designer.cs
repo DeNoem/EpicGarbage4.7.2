@@ -36,9 +36,9 @@ namespace EpicGarbage4._7._2
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(561, 175);
+            this.button1.Location = new System.Drawing.Point(608, 172);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(227, 34);
+            this.button1.Size = new System.Drawing.Size(227, 75);
             this.button1.TabIndex = 0;
             this.button1.Text = "Перейти к программе";
             this.button1.UseVisualStyleBackColor = true;
@@ -57,14 +57,14 @@ namespace EpicGarbage4._7._2
             "Кочегура Тимофей Сергеевич, ИСтб20о-1 "});
             this.listBox1.Location = new System.Drawing.Point(12, 12);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(776, 154);
+            this.listBox1.Size = new System.Drawing.Size(823, 154);
             this.listBox1.TabIndex = 2;
             // 
             // Title
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 221);
+            this.ClientSize = new System.Drawing.Size(847, 259);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button1);
             this.Name = "Title";

@@ -14,12 +14,12 @@ namespace ClassLibrary
         public static void Add(string contents)    
         {
 
-            File.WriteAllText(@"C:\temp\MyTest.json", contents);
+            File.WriteAllText(@"MyGarbage.json", contents);
         }
 
         public static List<Garbage> Read()        
         {
-            string jsonString = File.ReadAllText(@"C:\temp\MyTest.json");
+            string jsonString = File.ReadAllText(@"MyGarbage.json");
             return JsonSerializer.Deserialize<List<Garbage>>(jsonString);
         }
 

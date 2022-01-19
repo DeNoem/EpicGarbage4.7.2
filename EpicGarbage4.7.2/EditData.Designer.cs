@@ -43,7 +43,7 @@ namespace EpicGarbage4._7._2
             this.button2.Location = new System.Drawing.Point(12, 41);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(151, 61);
+            this.button2.Size = new System.Drawing.Size(215, 61);
             this.button2.TabIndex = 3;
             this.button2.Text = "Заполнить файл псевлослучайными значениями";
             this.button2.UseVisualStyleBackColor = true;
@@ -54,7 +54,7 @@ namespace EpicGarbage4._7._2
             this.button1.Location = new System.Drawing.Point(12, 11);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(151, 26);
+            this.button1.Size = new System.Drawing.Size(215, 26);
             this.button1.TabIndex = 2;
             this.button1.Text = "Удалить файл";
             this.button1.UseVisualStyleBackColor = true;
@@ -64,7 +64,7 @@ namespace EpicGarbage4._7._2
             // 
             this.button3.Location = new System.Drawing.Point(12, 107);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(151, 81);
+            this.button3.Size = new System.Drawing.Size(215, 81);
             this.button3.TabIndex = 4;
             this.button3.Text = "Открыть в виде таблицы для редактирования (обновить таблицу)\r\n";
             this.button3.UseVisualStyleBackColor = true;
@@ -87,7 +87,7 @@ namespace EpicGarbage4._7._2
             // 
             this.button4.Location = new System.Drawing.Point(12, 396);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(151, 43);
+            this.button4.Size = new System.Drawing.Size(215, 43);
             this.button4.TabIndex = 6;
             this.button4.Text = "Сохранить изменения";
             this.button4.UseVisualStyleBackColor = true;
@@ -104,7 +104,7 @@ namespace EpicGarbage4._7._2
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "EditData";
-            this.Text = "EditData";
+            this.Text = "Редактирование файла";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 

@@ -117,7 +117,7 @@ namespace EpicGarbage4._7._2
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBox2);
             this.Name = "_6_task";
-            this.Text = "_6_task";
+            this.Text = "Запрос 6";
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
