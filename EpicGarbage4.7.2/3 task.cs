@@ -20,7 +20,7 @@ namespace EpicGarbage4._7._2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var temp = FileCore.TypeSelect(comboBox3.SelectedIndex, FileCore.Search(comboBox1.SelectedIndex, comboBox2.SelectedIndex));
+            var temp = FileCore.TypeSelect(comboBox3.Text, FileCore.Search(comboBox1.SelectedIndex, comboBox2.SelectedIndex));
 
             temp.Sort();
 

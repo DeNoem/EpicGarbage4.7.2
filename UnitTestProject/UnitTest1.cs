@@ -108,7 +108,7 @@ namespace UnitTestProject
         [TestMethod]
         public void TestTypeSelect()
         {
-            var garbageType = 0;
+            var garbageType = "индустриальный";
             FileCore.Add(FileCore.Serializer<Garbage>(Garbages));
             List<Garbage> mainList = JsonSerializer.Deserialize<List<Garbage>>(File.ReadAllText(@"MyTest.json"));
 

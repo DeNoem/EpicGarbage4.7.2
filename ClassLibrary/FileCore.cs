@@ -80,10 +80,17 @@ namespace ClassLibrary
             return result;
         }
 
-        public static List<int> TypeSelect(int garbageType, List<Garbage> glist)
+        public static List<int> TypeSelect(string garbageType, List<Garbage> glist)
         {
             List<int> result = null;
-            switch (garbageType)
+            var garbageIndex = new Dictionary<string, int>()
+            {
+                { "индустриальный", 0 },
+                { "строительный", 1 },
+                { "коммунальный", 2}
+            };
+
+            switch (garbageIndex[garbageType])
             {
                 case 0:
                     result = Addition((garbage => garbage.AmountIndustrial), glist);
