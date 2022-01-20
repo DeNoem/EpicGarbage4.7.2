@@ -14,12 +14,12 @@ namespace ClassLibrary
         public static void Add(string contents)    
         {
 
-            File.WriteAllText(@"MyGarbage.json", contents);
+            File.WriteAllText(@"MyTest.json", contents);
         }
 
         public static List<Garbage> Read()        
         {
-            string jsonString = File.ReadAllText(@"MyGarbage.json");
+            string jsonString = File.ReadAllText(@"MyTest.json");
             return JsonSerializer.Deserialize<List<Garbage>>(jsonString);
         }
 
@@ -48,7 +48,7 @@ namespace ClassLibrary
 
         public static void DeleteFile()
         {
-            File.Delete(@"C:\temp\MyTest.txt");
+            File.Delete(@"MyTest.txt");
         }
 
         public static List<Garbage> RandomList()
@@ -74,7 +74,7 @@ namespace ClassLibrary
         {
             var result = glist.GroupBy(g=> g.Month)
                 .OrderBy(g=> g.Key)
-                .Select(g=> g.Sum(garbageType)) //(garbage => garbage.AmountIndustrial)
+                .Select(g=> g.Sum(garbageType))
                 .ToList();
             
             return result;

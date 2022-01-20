@@ -1,9 +1,9 @@
-﻿using ClassLibrary;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using ClassLibrary;
 
 namespace UnitTestProject
 {
@@ -50,10 +50,9 @@ namespace UnitTestProject
         {
             string type = "Industrial";
             int month = 3;
-            File.WriteAllText(@"MyTest.json", JsonSerializer.Serialize(Garbages));
-            var temp = JsonSerializer.Deserialize<List<Garbage>>(File.ReadAllText(@"MyTest.json"));
+            FileCore.Add(FileCore.Serializer<Garbage>(Garbages));
 
-            var actual = temp.Where(Garbage => Garbage.Month == month && Garbage.DistrictType == type).ToList()[0];
+            var actual = FileCore.Search(type, month);
             var expected = garbage10;
 
             Assert.AreEqual(expected.Month, actual.Month);
@@ -68,12 +67,10 @@ namespace UnitTestProject
         public void TestSearchMonth()           
         {
             int month = 6;
-            File.WriteAllText(@"MyTest.json", JsonSerializer.Serialize(Garbages));
-            List<Garbage> temp = JsonSerializer.Deserialize<List<Garbage>>(File.ReadAllText(@"MyTest.json"));
+            FileCore.Add(FileCore.Serializer<Garbage>(Garbages));
 
-            var actual = temp.Where(Garbage => Garbage.Month == month)
-                .ToList();
-            List<Garbage> expected = new List<Garbage> { garbage19,garbage20,garbage21 };
+            var actual = FileCore.Search(month);
+            var expected = new List<Garbage> { garbage19,garbage20,garbage21 };
 
             Assert.AreEqual(expected.Count, actual.Count);
             for (int i = 0; i < expected.Count; i++)
@@ -92,13 +89,12 @@ namespace UnitTestProject
 
             int monthS = 2;
             int monthF = 4;
-            File.WriteAllText(@"MyTest.json", JsonSerializer.Serialize(Garbages));
-            List<Garbage> temp = JsonSerializer.Deserialize<List<Garbage>>(File.ReadAllText(@"MyTest.json"));
 
-            var actual = temp.Where(Garbage => Garbage.Month >= monthS && Garbage.Month <= monthF)
-                .ToList();
+            FileCore.Add(FileCore.Serializer<Garbage>(Garbages));
+
+            var actual = FileCore.Search(monthS, monthF);
             var expected = new List<Garbage> { garbage7, garbage8, garbage9, garbage10, garbage11, garbage12, garbage13, garbage14, garbage15 };
-
+            
             Assert.AreEqual(expected.Count, actual.Count);
             for (int i = 0; i < expected.Count; i++)
             {
@@ -109,22 +105,31 @@ namespace UnitTestProject
                 Assert.AreEqual(expected[i].AmountMunicipal, actual[i].AmountMunicipal);
             }
         }
+        [TestMethod]
+        public void TestTypeSelect()
+        {
+            var garbageType = 0;
+            FileCore.Add(FileCore.Serializer<Garbage>(Garbages));
+            List<Garbage> mainList = JsonSerializer.Deserialize<List<Garbage>>(File.ReadAllText(@"MyTest.json"));
+
+            var actual = FileCore.TypeSelect(garbageType, mainList);
+            var expected = new List<int> { 6,15,24,33,42,51,60,69,25};
+
+            Assert.AreEqual(expected.Count, actual.Count);
+            for (int i = 0; i < expected.Count; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
+
+        }
 
         [TestMethod]
         public void TestMonthAddition()
         {
-            File.WriteAllText(@"MyTest.json", JsonSerializer.Serialize(Garbages));
+            FileCore.Add(FileCore.Serializer<Garbage>(Garbages));
             List<Garbage> mainList = JsonSerializer.Deserialize<List<Garbage>>(File.ReadAllText(@"MyTest.json"));
 
-            var actual = mainList.GroupBy(g => g.Month)
-                .Select(g => new Garbage
-                {
-                    Month = g.Key,
-                    AmountIndustrial = g.Sum(garbage => garbage.AmountIndustrial),
-                    AmountConstruction = g.Sum(garbage => garbage.AmountConstruction),
-                    AmountMunicipal = g.Sum(garbage => garbage.AmountMunicipal)
-                })
-                .ToList();
+            var actual = FileCore.MonthAddition(mainList);
             var expected = new List<Garbage> { new Garbage(0, null, 6, 6, 6), new Garbage(1, null, 15, 15, 15), 
                                                 new Garbage(2, null, 24, 24, 24), new Garbage(3, null, 33, 33, 33),
                                                 new Garbage(4, null, 42, 42, 42), new Garbage(5, null, 51, 51, 51),
